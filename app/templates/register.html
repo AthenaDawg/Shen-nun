@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head><title>Регистрация</title></head>
+<body>
+  <h1>Регистрация</h1>
+  <form method="POST" action="{{ url_for('user.register') }}">
+    {{ form.hidden_tag() }}
+
+    <p>
+      {{ form.username.label }}<br>
+      {{ form.username(size=32) }}<br>
+      {% for error in form.username.errors %}
+        <span style="color:red;">{{ error }}</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.email.label }}<br>
+      {{ form.email(size=32) }}<br>
+      {% for error in form.email.errors %}
+        <span style="color:red;">{{ error }}</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(size=32) }}<br>
+      {% for error in form.password.errors %}
+        <span style="color:red;">{{ error }}</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.confirm_password.label }}<br>
+      {{ form.confirm_password(size=32) }}<br>
+      {% for error in form.confirm_password.errors %}
+        <span style="color:red;">{{ error }}</span>
+      {% endfor %}
+    </p>
+
+    <p>{{ form.submit() }}</p>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+      {% for category, message in messages %}
+        <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</body>
+</html>

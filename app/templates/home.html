@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <h1>Добро пожаловать на сайт чая!</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li><strong>{{ category }}:</strong> {{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if current_user.is_authenticated %}
+        <p>Привет, {{ current_user.username }}!</p>
+        <a href="{{ url_for('user.logout') }}">Выйти</a>
+    {% else %}
+        <a href="{{ url_for('user.login') }}">Войти</a><br>
+        <a href="{{ url_for('user.register') }}">Регистрация</a>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Секреты
+.env
+
+# Виртуальное окружение
+venv/
+
+# PyCharm
+.idea/
+instance/
+
+# Кеши и мусор
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.sqlite3

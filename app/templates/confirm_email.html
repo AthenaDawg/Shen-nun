@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Подтверждение почты</title>
+</head>
+<body>
+
+    <h1>Подтверждение электронной почты</h1>
+    <p>Спасибо за регистрацию! Мы отправили письмо на вашу почту.</p>
+    <p>Пожалуйста, перейдите по ссылке в письме, чтобы подтвердить ваш адрес электронной почты.</p>
+    <form method="POST">
+    {{ form.hidden_tag() }}
+    <button type="submit" class="btn btn-primary">Отправить письмо повторно</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                     {{ message }}
+                </div>
+            {% endfor %}
+    {% endif %} {% endwith %}
+</body>
+</html>
